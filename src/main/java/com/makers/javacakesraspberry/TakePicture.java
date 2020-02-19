@@ -8,7 +8,7 @@ public class TakePicture {
 
             Runtime runtime = Runtime.getRuntime();
 
-            runtime.exec("raspistill -o pic.jpg");
+            runtime.exec("raspistill -o ./Desktop/Pictures/pic.jpg");
 
             System.out.println("Picture Taken");
 

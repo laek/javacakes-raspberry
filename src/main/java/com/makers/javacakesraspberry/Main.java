@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.makers.javacakesraspberry;
 import java.io.IOException;
 import java.util.Date;
@@ -20,10 +15,6 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 import javax.mail.internet.MimeBodyPart;
 
-/**
- *
- * @author laura
- */
 public class Main {
     
     public static void main(String[] args) {
@@ -34,7 +25,7 @@ public class Main {
         String password = "makers2020";
  
         // outgoing message information
-        String mailTo = "marianetchaeva@gmail.com";
+        String mailTo = "<ADD YOUR EMAIL ADDRESS>";
         String subject = "Hello from javacakes with an attachment";
         String message = "Hi guy, Hope you have a lot of javacakes. Duke.";
         
@@ -47,11 +38,8 @@ public class Main {
         try {
             mailer.sendEmailWithAttachments(host, port, mailFrom, password, mailTo,
                     subject, message, attachFiles);
-            System.out.println("Email sent with attachment v.1.");
+            System.out.println("Email sent with attachment.");
         } catch (Exception ex) {
-//            mailer.sendPlainTextEmail(host, port, mailFrom, password, mailTo,
-//                subject, message);
-//            System.out.println("Email sent without attachment.");
             System.out.println("Failed to sent email with attachment.");
             ex.printStackTrace();
         }

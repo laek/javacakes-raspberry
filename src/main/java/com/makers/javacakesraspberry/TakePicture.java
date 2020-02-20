@@ -8,7 +8,7 @@ public class TakePicture {
 
             Runtime runtime = Runtime.getRuntime();
 
-            runtime.exec("raspistill -o ./javacakes/images/pic.jpg");
+            runtime.exec("raspistill -o " +  System.getProperty("user.home") + "/javacakes/images/pic.jpg");
 
             System.out.println("Picture Taken");
 

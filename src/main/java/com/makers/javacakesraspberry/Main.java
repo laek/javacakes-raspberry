@@ -5,7 +5,9 @@
  */
 package com.makers.javacakesraspberry;
 
-import java.util.Scanner;
+import com.pi4j.io.gpio.*;
+import com.pi4j.io.gpio.event.GpioPinDigitalStateChangeEvent;
+import com.pi4j.io.gpio.event.GpioPinListenerDigital;
 
 /**
  *
@@ -13,25 +15,35 @@ import java.util.Scanner;
  */
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
+        System.out.println("Running...");
 
-        Scanner input = new Scanner(System.in);
+        // create gpio controller
+        final GpioController gpio = GpioFactory.getInstance();
 
-        while(true) {
+        // provision gpio pin #02 as an input pin with its internal pull down resistor enabled
+        final GpioPinDigitalInput myButton = gpio.provisionDigitalInputPin(RaspiPin.GPIO_08);
 
-            System.out.println("Enter Input:");
+        // set shutdown state for this input pin
+        myButton.setShutdownOptions(true);
 
-            String userInput = input.nextLine();
+        // create and register gpio pin listener
+        myButton.addListener(new GpioPinListenerDigital() {
+            @Override
+            public void handleGpioPinDigitalStateChangeEvent(GpioPinDigitalStateChangeEvent event) {
+                boolean buttonPressed = myButton.isLow();
 
-            if(userInput.equals("a")) {
-
-                TakePicture picture = new TakePicture();
-
-            } else {
-
-                System.out.println("Try again...");
-
+                if (buttonPressed) {
+                    TakePicture picture = new TakePicture();
+                }
             }
+        });
+
+        System.out.println("Press doorbell to take picture");
+
+        // keep program running until user aborts (CTRL-C)
+        while(true) {
+            Thread.sleep(500);
         }
     }
 }

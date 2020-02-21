@@ -12,7 +12,7 @@ public class VideoCall {
 
             runtime.exec("sudo service motion start");
 
-            System.out.println("Video Started Taken");
+            System.out.println("Video Started");
 
             TimeUnit.SECONDS.sleep(30);
 

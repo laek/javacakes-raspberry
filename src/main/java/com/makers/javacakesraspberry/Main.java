@@ -27,7 +27,7 @@ public class Main {
 
         // outgoing message information
         String mailTo = "javacakes101@gmail.com";
-        String message = "There's somebody at your door!";
+        String message = "There's somebody at your door! Visit http://10.0.209.134:8081/ to see who it is.";
 
         // attachments
         String[] attachFiles = new String[1];
@@ -81,6 +81,8 @@ public class Main {
                         System.out.println("Failed to sent email with attachment.");
                         ex.printStackTrace();
                     }
+
+                    VideoCall videoCall = new VideoCall();
                 }
                 return null;
             }

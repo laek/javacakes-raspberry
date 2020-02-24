@@ -1,10 +1,14 @@
 package com.makers.javacakesraspberry;
 
 import com.pi4j.io.gpio.*;
-import com.pi4j.io.gpio.event.GpioPinDigitalStateChangeEvent;
-import com.pi4j.io.gpio.event.GpioPinListenerDigital;
+import com.pi4j.io.gpio.trigger.GpioCallbackTrigger;
+import com.pi4j.io.gpio.trigger.GpioPulseStateTrigger;
 
+import java.util.concurrent.Callable;
 import java.util.concurrent.TimeUnit;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Main {
 
@@ -19,8 +23,7 @@ public class Main {
 
         // outgoing message information
         String mailTo = "javacakes101@gmail.com";
-        String subject = "Hello from javacakes with an attachment";
-        String message = "Hi guy, Hope you have a lot of javacakes. Duke.";
+        String message = "There's somebody at your door! Visit http://10.0.209.134:8081/ to see who it is.";
 
         // attachments
         String[] attachFiles = new String[1];
@@ -31,39 +34,55 @@ public class Main {
         // create gpio controller
         final GpioController gpio = GpioFactory.getInstance();
 
-        // provision gpio pin #02 as an input pin with its internal pull down resistor enabled
-        final GpioPinDigitalInput myButton = gpio.provisionDigitalInputPin(RaspiPin.GPIO_08);
+        // Button
+        final GpioPinDigitalInput myButton = gpio.provisionDigitalInputPin(RaspiPin.GPIO_29);
+
+        // LED and Buzzer
+        GpioPinDigitalOutput myOutput[] = {
+                gpio.provisionDigitalOutputPin(RaspiPin.GPIO_06, "LED", PinState.LOW),
+                gpio.provisionDigitalOutputPin(RaspiPin.GPIO_16, "Buzzer", PinState.LOW)
+        };
 
         // set shutdown state for this input pin
         myButton.setShutdownOptions(true);
 
+        // Buzzer Trigger
+        myButton.addTrigger(new GpioPulseStateTrigger(PinState.LOW, myOutput[1], 500));
+
+        // LED Trigger
+        myButton.addTrigger(new GpioPulseStateTrigger(PinState.LOW, myOutput[0], 500));
+
         // create and register gpio pin listener
-        myButton.addListener(new GpioPinListenerDigital() {
-            @Override
-            public void handleGpioPinDigitalStateChangeEvent(GpioPinDigitalStateChangeEvent event) {
+        myButton.addTrigger(new GpioCallbackTrigger(new Callable<Void>() {
+            public Void call() {
                 boolean buttonPressed = myButton.isLow();
 
                 if (buttonPressed) {
+
+                    LocalDateTime doorbellAlert = LocalDateTime.now();
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE, MMM dd, yyyy HH:mm:ss a");
+                    String newDateTime = formatter.format(doorbellAlert);
+                    String subject = "Doorbell rang on " + newDateTime;
+
                     TakePicture picture = new TakePicture();
 
                     try {
-                        TimeUnit.SECONDS.sleep(10);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+                        TimeUnit.SECONDS.sleep(5);
 
-                    try {
                         mailer.sendEmailWithAttachments(host, port, mailFrom, password, mailTo,
                                 subject, message, attachFiles);
+
                         System.out.println("Email sent with attachment.");
                     } catch (Exception ex) {
                         System.out.println("Failed to sent email with attachment.");
                         ex.printStackTrace();
                     }
 
+                    VideoCall videoCall = new VideoCall();
                 }
+                return null;
             }
-        });
+        }));
 
         System.out.println("Press doorbell to take picture");
 
@@ -71,7 +90,5 @@ public class Main {
         while(true) {
             Thread.sleep(500);
         }
-
     }
-    
 }

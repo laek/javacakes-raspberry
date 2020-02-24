@@ -10,10 +10,6 @@ import java.util.concurrent.TimeUnit;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-/**
- *
- * @author laura
- */
 public class Main {
 
     public static void main(String[] args) throws InterruptedException {

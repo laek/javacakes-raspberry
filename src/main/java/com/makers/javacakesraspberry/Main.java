@@ -6,10 +6,6 @@ import com.pi4j.io.gpio.event.GpioPinListenerDigital;
 
 import java.util.concurrent.TimeUnit;
 
-/**
- *
- * @author laura
- */
 public class Main {
 
     public static void main(String[] args) throws InterruptedException {

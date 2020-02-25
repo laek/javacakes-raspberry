@@ -9,7 +9,7 @@ public class MessageInfo {
 
     // outgoing message information
     public static String mailTo = "javacakes101@gmail.com";
-    public static String message = "There's somebody at your door! Visit http://10.0.209.112:8081/ to see who it is.";
+    public static String message = "There's somebody at your door! Visit http://10.0.209.112:4567/ to see who it is.";
 
     // attachments
     public static String[] attachFiles = {"/home/pi/javacakes/images/pic.jpg"};

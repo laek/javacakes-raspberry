@@ -34,7 +34,7 @@ class EmailSenderTest {
     String message = "This is an email sending test.";
 
     // attachments
-    String[] attachFiles = {"/Users/student/Projects/week11/javacakes-raspberry/javacakes-raspberry/src/test/resources/testFile.txt"};
+    String[] attachFiles = {"src/test/resources/testFile.txt"};
 
     @BeforeEach
     void setUp() throws Exception {

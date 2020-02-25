@@ -54,6 +54,8 @@ public class ButtonActivation {
                             ex.printStackTrace();
                         }
                         new VideoCall();
+
+                        new DuoCall();
                     }
                     return null;
                 }

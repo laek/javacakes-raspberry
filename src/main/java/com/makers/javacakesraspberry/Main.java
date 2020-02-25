@@ -23,7 +23,7 @@ public class Main {
 
         // outgoing message information
         String mailTo = "javacakes101@gmail.com";
-        String message = "There's somebody at your door! Visit http://10.0.209.134:8081/ to see who it is.";
+        String message = "There's somebody at your door! Visit http://10.0.209.112:8081/ to see who it is.";
 
         // attachments
         String[] attachFiles = new String[1];
@@ -54,7 +54,7 @@ public class Main {
 
         // create and register gpio pin listener
         myButton.addTrigger(new GpioCallbackTrigger(new Callable<Void>() {
-            public Void call() {
+            public Void call() throws InterruptedException {
                 boolean buttonPressed = myButton.isLow();
 
                 if (buttonPressed) {
@@ -64,7 +64,7 @@ public class Main {
                     String newDateTime = formatter.format(doorbellAlert);
                     String subject = "Doorbell rang on " + newDateTime;
 
-                    TakePicture picture = new TakePicture();
+                    new TakePicture();
 
                     try {
                         TimeUnit.SECONDS.sleep(5);
@@ -78,7 +78,9 @@ public class Main {
                         ex.printStackTrace();
                     }
 
-                    VideoCall videoCall = new VideoCall();
+                    new VideoCall();
+
+                    new DuoCall();
                 }
                 return null;
             }

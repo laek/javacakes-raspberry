@@ -11,13 +11,11 @@ public class VideoCall {
             Runtime runtime = Runtime.getRuntime();
 
             runtime.exec("sudo service motion start");
-
             System.out.println("Video Started");
 
             TimeUnit.SECONDS.sleep(30);
 
             runtime.exec("sudo service motion stop");
-
             System.out.println("Video Stopped");
 
         } catch (Exception e) {
@@ -25,6 +23,5 @@ public class VideoCall {
             System.out.println("Error: " + e.getMessage());
 
         }
-
     }
 }

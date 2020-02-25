@@ -103,3 +103,7 @@ target/**
 
 #.idea Files
 .idea/**
+
+#DS_store - "Desktop Services Store" that contains attributes
+#of a folder and is created every single time a folder is navigated to
+.DS_Store

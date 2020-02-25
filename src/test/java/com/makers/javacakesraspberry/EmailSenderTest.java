@@ -1,10 +1,10 @@
 package com.makers.javacakesraspberry;
 
-import com.icegreen.greenmail.util.GreenMail;
-import com.icegreen.greenmail.util.ServerSetup;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import com.icegreen.greenmail.util.GreenMail;
+import com.icegreen.greenmail.util.ServerSetup;
 
 import javax.mail.BodyPart;
 import javax.mail.Message;
@@ -34,7 +34,7 @@ class EmailSenderTest {
     String message = "This is an email sending test.";
 
     // attachments
-    String[] attachFiles = {"/Users/student/Projects/week11/javacakes-raspberry/javacakes-raspberry/src/test/resources/testFile.txt"};
+    String[] attachFiles = {"src/test/resources/testFile.txt"};
 
     @BeforeEach
     void setUp() throws Exception {

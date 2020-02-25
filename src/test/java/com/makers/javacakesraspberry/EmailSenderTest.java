@@ -1,10 +1,10 @@
 package com.makers.javacakesraspberry;
 
-import com.icegreen.greenmail.util.GreenMail;
-import com.icegreen.greenmail.util.ServerSetup;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import com.icegreen.greenmail.util.GreenMail;
+import com.icegreen.greenmail.util.ServerSetup;
 
 import javax.mail.BodyPart;
 import javax.mail.Message;

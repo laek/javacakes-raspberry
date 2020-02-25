@@ -34,7 +34,7 @@ class EmailSenderTest {
     String message = "This is an email sending test.";
 
     // attachments
-    String[] attachFiles = {"src/test/resources/testFile.txt"};
+    String[] attachFiles = {"src/test/resources/testFile.jpg"};
 
     @BeforeEach
     void setUp() throws Exception {
@@ -78,7 +78,7 @@ class EmailSenderTest {
             BodyPart bp = retParts.getBodyPart(i);
             String disp = bp.getDisposition();
             if (disp != null && (disp.equals(BodyPart.ATTACHMENT))) {
-                assertEquals(bp.getFileName(), "testFile.txt");
+                assertEquals(bp.getFileName(), "testFile.jpg");
                 numAttach++;
             }
         }

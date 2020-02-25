@@ -21,7 +21,6 @@ public class ButtonActivation {
         };
 
         public static void takePicture() throws InterruptedException {
-            System.out.println("Press doorbell to take picture from the method");
 
             // set shutdown state for this input pin
             myButton.setShutdownOptions(true);
@@ -61,7 +60,7 @@ public class ButtonActivation {
                 }
             }));
 
-            System.out.println("Press doorbell to take picture from while loop");
+            System.out.println("Press doorbell to take picture");
 
             // keep program running until user aborts (CTRL-C)
             while (true) {

@@ -10,9 +10,12 @@
     <iframe src="" height="200" width="300" name="iframe_a"></iframe>
     <p><a href="http://10.0.209.112:8081" target="iframe_a">Security Cam video-stream</a></p>
 
-    <form action="/talk" method=post>
-
+        <form action="/talk" method=post>
           <input type="submit" value="TALK" name="talk">
+        </form>
+
+        <form action="/endstream" method=post>
+            <input type="submit" value="Ignore Doorbell">
         </form>
     </body>
 </html>

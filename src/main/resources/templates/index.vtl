@@ -3,20 +3,110 @@
 <html>
     <head>
 
+      <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet'>
+
+      <div id='header'>
+      <img src='https://www.raspberrypi.org/app/uploads/2011/10/Raspi-PGB001.png' height='100' width='120' >
+      <img src='https://www.raspberrypi.org/app/uploads/2011/10/Raspi-PGB001.png' height='100' width='120' style="top:0; right:0; position:absolute">
+      <div style="margin-top:-100px;" align='center'>
+         <h1> RaspBellry Pi Smart Doorbell </h1>
+         <h3> Brought to you by The Javacakes </h3>
+        </div>
+      </div>
+
+
     </head>
 
-    <body>
+    <body style="background-color:#D0D0D0;">
 
-    <iframe src="" height="200" width="300" name="iframe_a"></iframe>
-    <p><a href="http://10.0.209.112:8081" target="iframe_a">Security Cam video-stream</a></p>
 
-        <form action="/talk" method=post>
-          <input type="submit" value="TALK" name="talk">
+    <div id='video'>
+    <iframe src="" height="400" width="550" name="iframe_a" style="margin-top:60px; margin-left:40px; float: left;"></iframe>
+    <p><a class='link1' href="http://10.0.209.112:8081" target="iframe_a" style="margin-left:103px; bottom :500px; position: absolute; font-family:'Quicksand';">Start stream</a></p>
+    </div>
+
+      <div>
+    <form action="/talk" method=post>
+          <input class='button1' type="submit" value="Call now" name="talk" ></input>
         </form>
+        </div>
 
+        <div>
         <form action="/endstream" method=post>
-            <input type="submit" value="Ignore Doorbell">
+            <input class='button2' type="submit" value="Ignore doorbell">
         </form>
+      </div>
     </body>
+
+
+
+
 </html>
 
+<style>
+h1 {
+  font-family: 'Quicksand';font-size: 35px;
+}
+
+h3 {
+  font-family: 'Quicksand';font-size: 13px;
+  margin-top: -20px;
+}
+
+.button1 {
+  background-color: #cb0038;
+  border: none;
+  color: white;
+  padding: 20px 75px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 30px;
+  font-size: 18px;
+  font-family: 'Quicksand'
+  right: 100px;
+  left: 700px;
+  bottom: 400px;
+  position: absolute;
+  display: inline;
+  float: right;
+}
+
+.button2 {
+  background-color: #cb0038;
+  border: none;
+  color: white;
+  padding: 20px 50px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 30px;
+  font-size: 18px;
+  font-family: 'Quicksand'
+  right: 100px;
+  left: 700px;
+  bottom: 300px;
+  position: absolute;
+  display: inline;
+  float: right;
+}
+
+.link1 {
+  background-color: #cb0038;
+  border: none;
+  color: white;
+  padding: 20px 50px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 30px;
+  font-size: 18px;
+  font-family: 'Quicksand'
+  position: absolute;
+  display: inline;
+  float: right;
+}
+
+
+
+</style>

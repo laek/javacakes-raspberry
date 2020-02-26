@@ -11,9 +11,13 @@ public class Main {
     }
 
     public static void main(String[] args) throws InterruptedException {
+
+        Livestream livestream = new Livestream();
+
         System.out.println("Running...");
 
         get("/", (req, res) -> {
+            livestream.startLivestream();
 
             HashMap index = new HashMap();
 
@@ -21,7 +25,16 @@ public class Main {
         }, new VelocityTemplateEngine());
 
         post("/talk", (req, res) -> {
-            return "you are talking now";
+            livestream.stopLivestream();
+
+            new DuoCall();
+
+            return "Call starting - please close this window.";
+        });
+
+        post("/endstream", (req, res) -> {
+            livestream.stopLivestream();
+            return "Doorbell ignored - please close this window.";
         });
 
         new ButtonActivation().takePicture();

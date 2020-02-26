@@ -7,6 +7,8 @@ public class DuoCall {
 
     public DuoCall() {
 
+        System.out.println("Starting duocall");
+
         Robot robot = null;
 
         try {
@@ -15,32 +17,32 @@ public class DuoCall {
             e.printStackTrace();
         }
 
-        robot.delay(500);
-
-        robot.mouseMove(20,20);     // open top left menu
-
-        robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
-        robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
-
-        robot.delay(500);
-
-        robot.mouseMove(20, 350);   // move to chromium apps
-
-        robot.delay(500);
-
-        robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
-        robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);           // click
-
-        robot.delay(500);
-
-        robot.mouseMove(250, 350);      // move to duo
-
-        robot.delay(500);
-
-        robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
-        robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);           // click
-
-        robot.delay(11000);
+//        robot.delay(500);
+//
+//        robot.mouseMove(20,20);     // open top left menu
+//
+//        robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
+//        robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+//
+//        robot.delay(500);
+//
+//        robot.mouseMove(20, 350);   // move to chromium apps
+//
+//        robot.delay(500);
+//
+//        robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
+//        robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);           // click
+//
+//        robot.delay(500);
+//
+//        robot.mouseMove(250, 350);      // move to duo
+//
+//        robot.delay(500);
+//
+//        robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
+//        robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);           // click
+//
+//        robot.delay(11000);
 
         robot.mouseMove(500, 200);          // move to contact
 

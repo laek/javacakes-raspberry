@@ -4,6 +4,7 @@ import com.pi4j.io.gpio.*;
 import com.pi4j.io.gpio.trigger.GpioCallbackTrigger;
 import com.pi4j.io.gpio.trigger.GpioPulseStateTrigger;
 
+import java.io.IOException;
 import java.util.concurrent.Callable;
 import java.util.concurrent.TimeUnit;
 
@@ -14,7 +15,7 @@ public class ButtonActivation {
         // Button
         public static final GpioPinDigitalInput myButton = gpio.provisionDigitalInputPin(RaspiPin.GPIO_29);
 
-//        // LED and Buzzer
+       // LED and Buzzer
         public static GpioPinDigitalOutput myOutput[] = {
                 gpio.provisionDigitalOutputPin(RaspiPin.GPIO_06, "LED", PinState.LOW),
                 gpio.provisionDigitalOutputPin(RaspiPin.GPIO_16, "Buzzer", PinState.LOW)
@@ -25,21 +26,26 @@ public class ButtonActivation {
             // set shutdown state for this input pin
             myButton.setShutdownOptions(true);
 
-//            // Buzzer Trigger
+            // Buzzer Trigger
             myButton.addTrigger(new GpioPulseStateTrigger(PinState.LOW, myOutput[1], 500));
-//
-//            // LED Trigger
+
+            // LED Trigger
             myButton.addTrigger(new GpioPulseStateTrigger(PinState.LOW, myOutput[0], 500));
 
             // create and register gpio pin listener
             myButton.addTrigger(new GpioCallbackTrigger(new Callable<Void>() {
-                public Void call() {
+                public Void call() throws IOException {
                     boolean buttonPressed = myButton.isLow();
 
                     if (buttonPressed) {
+
+                        Livestream livestream = new Livestream();
+
+                        livestream.stopLivestream();
+
                         String subject = "Doorbell rang on " + DoorbellTime.newDateTime();
 
-                        TakePicture picture = new TakePicture();
+                        new TakePicture();
 
                         try {
                             TimeUnit.SECONDS.sleep(5);
@@ -52,9 +58,6 @@ public class ButtonActivation {
                             System.out.println("Failed to sent email with attachment.");
                             ex.printStackTrace();
                         }
-                        new VideoCall();
-
-                        new DuoCall();
                     }
                     return null;
                 }
@@ -68,15 +71,5 @@ public class ButtonActivation {
             }
 
         }
-
-//        public void startVideoStream () {
-//            VideoCall videoCall = new VideoCall();
-//        }
-
-//        public static void terminateVideoStream () throws IOException {
-//            Runtime runtime = Runtime.getRuntime();
-//            runtime.exec("sudo service motion stop");
-//            System.out.println("Video Stopped");
-//        }
 
 }

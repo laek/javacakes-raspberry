@@ -14,7 +14,7 @@ public class VideoCall {
 
             System.out.println("Video Started");
 
-            TimeUnit.SECONDS.sleep(30);
+            TimeUnit.SECONDS.sleep(60);
 
             runtime.exec("sudo service motion stop");
 

@@ -13,5 +13,4 @@ public class MessageInfo {
 
     // attachments
     public static String[] attachFiles = {"/home/pi/javacakes/images/pic.jpg"};
-//    attachFiles[0] = "/home/pi/javacakes/images/pic.jpg";
 }

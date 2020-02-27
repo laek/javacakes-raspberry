@@ -8,7 +8,7 @@ public class MessageInfo {
     public static String password = "makers2020";
 
     // outgoing message information
-    public static String mailTo = "javacakes101@gmail.com";
+    public static String mailTo = "maxosully@gmail.com";
     public static String message = "There's somebody at your door! Visit http://10.0.209.112:4567/ to see who it is.";
 
     // attachments

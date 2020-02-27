@@ -29,7 +29,7 @@ public class Main {
 
             new DuoCall();
 
-            return "Call starting - please close this window.";
+            return "Call started please close this page.";
         });
 
         post("/endstream", (req, res) -> {
